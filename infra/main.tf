@@ -16,5 +16,5 @@ provider "aws" {
 # resources
 
 resource "aws_s3_bucket" "meu-bucket-aws" {
-  bucket = "dev-tf-state-072359095972-us-west-1"
+  bucket = "meu-bucket-aws"
 }
