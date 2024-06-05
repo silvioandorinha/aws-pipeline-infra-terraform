@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 # resources
-resource "aws_sns_topic" "example" {
-  name              = "example-topic"
-  kms_master_key_id = "alias/kms-example-topic"
+
+resource "aws_s3_bucket" "meu-bucket-aws" {
+  bucket = "dev-tf-state-072359095972-us-west-1"
 }
