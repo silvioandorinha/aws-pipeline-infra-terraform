@@ -37,7 +37,11 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_instance" "web" {
+resource "aws_instance" "minha-instancia-ec2-ubuntu" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
+
+  tags = {
+    Name = "minha-instancia-ec2-ubuntu"
+  }
 }
