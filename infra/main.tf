@@ -21,8 +21,23 @@ resource "aws_s3_bucket" "meu-bucket-aws" {
 }
 
 # EC2
-resource "aws_cloud9_environment_ec2" "minha-instancia-ec2" {
-  instance_type = "t2.micro"
-  name          = "minha-maquina"
-  image_id      = "amazonlinux-1-x86_64"
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"] # Canonical
+}
+
+resource "aws_instance" "web" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t3.micro"
 }
