@@ -48,14 +48,14 @@ resource "aws_instance" "minha-instancia-ec2-ubuntu" {
 }
 
 # SQS
-resource "aws_sqs_queue" "minha-fila-sqs" {
+resource "aws_sqs_queue" "minha_fila_sqs" {
   name                      = "minha-fila-sqs"
   delay_seconds             = 90
   max_message_size          = 2048
   message_retention_seconds = 86400
   receive_wait_time_seconds = 10
   redrive_policy = jsonencode({
-    deadLetterTargetArn = aws_sqs_queue.terraform_queue_deadletter.arn
+    deadLetterTargetArn = aws_sqs_queue.minha_fila_sqs_deadletter.arn
     maxReceiveCount     = 4
   })
 
@@ -66,7 +66,7 @@ resource "aws_sqs_queue" "minha-fila-sqs" {
 }
 
 # KMS
-resource "aws_kms_key" "minha-chave-kms" {
+resource "aws_kms_key" "minha_chave_kms" {
   description             = "An example symmetric encryption KMS key"
   enable_key_rotation     = true
   deletion_window_in_days = 20
